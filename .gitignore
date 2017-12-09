@@ -1,5 +1,6 @@
 # C#
 obj/
+bin/
 
 # Javascript
 node_modules/
