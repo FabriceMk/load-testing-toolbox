@@ -1,0 +1,5 @@
+# C#
+obj/
+
+# Javascript
+node_modules/
