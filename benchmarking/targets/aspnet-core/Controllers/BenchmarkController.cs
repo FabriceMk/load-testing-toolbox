@@ -2,7 +2,7 @@
 
 namespace AspNetCoreTarget.Controllers
 {
-  [Route("[controller]")]
+    [Route("[controller]")]
     public class BenchmarkController : Controller
     {
         [HttpGet]
