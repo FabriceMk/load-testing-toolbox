@@ -1,14 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreTarget.Controllers
 {
-    [Route("[controller]")]
-    public class BenchmarkController : Controller
+    [ApiController]
+    [Route("/benchmark")]
+    public class BenchmarkController : ControllerBase
     {
+        /// <summary>
+        /// Simple HTTP benchmark endpoint.
+        /// Returns a string with current UTC Time.
+        /// </summary>
+        /// <returns>An HTTP result.</returns>
+        /// <response code="200">Returns a simple string and the current UTC time.</response>
+        [Route("simple-http")]
         [HttpGet]
-        public string Get()
+        public IActionResult SimpleHttp()
         {
-            return "Hello world!";
+            var message = $"Hitting ASP.NET Core : {DateTime.UtcNow}";
+            return Ok(message);
         }
     }
 }
