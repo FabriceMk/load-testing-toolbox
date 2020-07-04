@@ -1,17 +1,40 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace AspNetCoreTarget
 {
-  public class Program
+    /// <summary>
+    /// Bootstrap class.
+    /// </summary>
+    public class Program
     {
+        /// <summary>
+        /// Entry point of the application.
+        /// </summary>
+        /// <param name="args">Application arguments.</param>
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        /// <summary>
+        /// Creates the host for the application.
+        /// </summary>
+        /// <param name="args">Application arguments.</param>
+        /// <returns>A Host builder.</returns>
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            var hostBuilder = Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>()
+                    .ConfigureKestrel((context, options) =>
+                        {
+                            // Set properties and call methods on options
+                        });
+                });
+
+            return hostBuilder;
+        }
     }
 }
