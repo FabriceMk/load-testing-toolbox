@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AspNetCoreTarget.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/benchmark")]
     public class BenchmarkController : ControllerBase
     {
         /// <summary>
@@ -13,8 +13,9 @@ namespace AspNetCoreTarget.Controllers
         /// </summary>
         /// <returns>An HTTP result.</returns>
         /// <response code="200">Returns a simple string and the current UTC time.</response>
+        [Route("simple-http")]
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult SimpleHttp()
         {
             var message = $"Hitting ASP.NET Core : {DateTime.UtcNow}";
             return Ok(message);
